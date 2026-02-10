@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Profile</h2>
+
+<div class="card">
+<form method="post">
+    <input name="name" value="{{user['name']}}" placeholder="Full Name">
+    <input type="date" name="dob" value="{{user['dob']}}">
+    <input name="address" value="{{user['address']}}" placeholder="Address">
+    <label>ID / Address Proof</label>
+    <input type="file">
+    <button>Save Changes</button>
+</form>
+<p class="kyc">KYC Status: {{user['kyc']}}</p>
+</div>
+
+{% endblock %}

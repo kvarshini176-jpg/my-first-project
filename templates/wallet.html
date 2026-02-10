@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Wallet</h2>
+
+<div class="card">
+    <h3>Current Balance</h3>
+    <p class="balance">₹{{wallet['balance']}}</p>
+
+    <form method="post">
+        <input name="amount" placeholder="Amount">
+        <select>
+            <option>Savings Account</option>
+            <option>Credit Card</option>
+            <option>New Source</option>
+        </select>
+        <button>Add Funds</button>
+    </form>
+</div>
+
+{% endblock %}

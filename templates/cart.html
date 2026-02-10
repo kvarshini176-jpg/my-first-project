@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Shopping Cart</h2>
+
+<div class="card">
+    <p>Item: <b>Book</b></p>
+    <p>Price: ₹500</p>
+
+    <form method="post">
+        <input name="wallet" placeholder="Wallet Amount">
+        <input name="total" value="500">
+        <button>Confirm Purchase</button>
+    </form>
+</div>
+
+{% endblock %}
