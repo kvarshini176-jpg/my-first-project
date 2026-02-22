@@ -1,17 +1,50 @@
-{% extends "base.html" %}
-{% block content %}
-
-<h2>Shopping Cart</h2>
-
-<div class="card">
-    <p>Item: <b>Book</b></p>
-    <p>Price: ₹500</p>
-
-    <form method="post">
-        <input name="wallet" placeholder="Wallet Amount">
-        <input name="total" value="500">
-        <button>Confirm Purchase</button>
-    </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <a class="back-button" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    <h2>Your Cart</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash flash-success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% if items %}
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+            <th>Subtotal</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>₹{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td class="cart-actions">
+                <a href="{{ url_for('update_cart', product_id=item.id, action='increase') }}">+</a>
+                <a href="{{ url_for('update_cart', product_id=item.id, action='decrease') }}">-</a>
+                <a href="{{ url_for('update_cart', product_id=item.id, action='delete') }}">Delete</a>
+            </td>
+            <td>₹{{ item.price * item.quantity }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="4">Total</th>
+            <th>₹{{ total }}</th>
+        </tr>
+    </table>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
 </div>
-
-{% endblock %}
+</body>
+</html>
