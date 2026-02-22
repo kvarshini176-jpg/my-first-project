@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/static/style.css">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h2>Register</h2>
-<form method="post">
-<input name="username" placeholder="User ID"><br>
-<input type="password" name="password" placeholder="Password"><br>
-<button>Register</button>
-</form>
+<div class="container">
+    <h2>Register</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash flash-error">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter Username">
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter Password">
+        <label>Phone Number:</label>
+        <input type="text" name="phone" placeholder="Enter Phone Number">
+        <input type="submit" value="Register">
+    </form>
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
 </body>
 </html>
