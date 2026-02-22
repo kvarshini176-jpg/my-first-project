@@ -1,28 +1,20 @@
-{% extends "base.html" %}
-{% block content %}
-
-<h2>Welcome 👋</h2>
-
-<div class="grid">
-
-    <a href="/profile" class="box-link">
-        <div class="box">
-            👤 <br> Profile Management
-        </div>
-    </a>
-
-    <a href="/wallet" class="box-link">
-        <div class="box">
-            💰 <br> Wallet Management
-        </div>
-    </a>
-
-    <a href="/cart" class="box-link">
-        <div class="box">
-            🛒 <br> Shopping Cart
-        </div>
-    </a>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <div class="dashboard-grid">
+        <a class="dashboard-button" href="{{ url_for('profile') }}">Profile</a>
+        <a class="dashboard-button" href="{{ url_for('wallet') }}">Wallet</a>
+        <a class="dashboard-button" href="{{ url_for('shop') }}">Shop</a>
+        <a class="dashboard-button" href="{{ url_for('cart') }}">Cart</a>
+        <a class="dashboard-button" href="{{ url_for('kyc') }}">KYC Upload</a>
+        <a class="dashboard-button" href="{{ url_for('logout') }}">Logout</a>
+    </div>
 </div>
-
-{% endblock %}
+</body>
+</html>
