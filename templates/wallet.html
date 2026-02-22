@@ -1,21 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
-
-<h2>Wallet</h2>
-
-<div class="card">
-    <h3>Current Balance</h3>
-    <p class="balance">₹{{wallet['balance']}}</p>
-
-    <form method="post">
-        <input name="amount" placeholder="Amount">
-        <select>
-            <option>Savings Account</option>
-            <option>Credit Card</option>
-            <option>New Source</option>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wallet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <a class="back-button" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    <h2>Wallet</h2>
+    <p>Current Wallet Balance: ₹{{ user.balance }}</p>
+    <p>Bank Balance: ₹{{ user.bank_balance }}</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash flash-success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label>Amount to Add:</label>
+        <input type="number" name="amount" placeholder="Enter Amount">
+        <label>Funding Source:</label>
+        <select name="method">
+            <option value="bank">Savings Account</option>
+            <option value="card">Credit Card</option>
         </select>
-        <button>Add Funds</button>
+        <input type="submit" value="Add Money">
     </form>
 </div>
-
-{% endblock %}
+</body>
+</html>
