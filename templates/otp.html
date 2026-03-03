@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>OTP Verification</h2>
+    <p>OTP sent to phone: {{ phone }} (Simulated: {{ otp }})</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash flash-error">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label>Enter OTP:</label>
+        <input type="text" name="otp">
+        <input type="submit" value="Verify OTP">
+    </form>
+</div>
+</body>
+</html>
