@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KYC Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <a class="back-button" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    <h2>KYC Upload</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash flash-success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% if user.kyc_uploaded %}
+        <p>Status: KYC Uploaded ✅</p>
+    {% else %}
+        <p>Status: Pending ⏳</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload KYC Document:</label>
+        <input type="file" name="kyc_file">
+        <input type="submit" value="Upload">
+    </form>
+</div>
+</body>
+</html>
